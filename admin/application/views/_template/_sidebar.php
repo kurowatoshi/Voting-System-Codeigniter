@@ -14,8 +14,8 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         
-        <li <?=($this->uri->segment(1)=='kandidat') ? 'class="active"' : '' ?>>
-          <a href="<?=base_url('kandidat');?>"><i class="fa fa-user-secret"></i> <span>Candidates</span>
+        <li <?=($this->uri->segment(1)=='candidate') ? 'class="active"' : '' ?>>
+          <a href="<?=base_url('candidate');?>"><i class="fa fa-user-secret"></i> <span>Candidates</span>
             <span class="pull-right-container">
               <span class="label label-danger pull-right"><?=$jmlkandidat;?></span>
             </span>
@@ -24,16 +24,16 @@
         <li <?=($this->uri->segment(1)=='voting') ? 'class="active"' : ''?>>
           <a href="<?=base_url('voting');?>"><i class="fa fa-caret-square-o-down"></i> <span>Voting</span></a>
       </li>
-        <li <?=($this->uri->segment(1)=='pemilih') ? 'class="active"' : ''?>>
-          <a href="<?=base_url('pemilih');?>"><i class="fa fa-users"></i> <span>Voter</span>
+        <li <?=($this->uri->segment(1)=='voter') ? 'class="active"' : ''?>>
+          <a href="<?=base_url('voter');?>"><i class="fa fa-users"></i> <span>Voter</span>
             <span class="pull-right-container">
               <span class="label label-success pull-right"><?=$jmlpemilih;?></span>
             </span>
           </a>
         </li>
         <li class="header">EXTRAS</li>
-        <li <?=($this->uri->segment(1)=='pengaturan') ? 'class="active"' : ''?>>
-          <a href="<?=base_url('pengaturan')?>"><i class="fa fa-cogs"></i> <span>Settings</span></a>
+        <li <?=($this->uri->segment(1)=='setting') ? 'class="active"' : ''?>>
+          <a href="<?=base_url('setting')?>"><i class="fa fa-cogs"></i> <span>Settings</span></a>
         </li>
       </ul>
     </section>

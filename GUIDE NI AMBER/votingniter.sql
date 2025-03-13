@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 04, 2025 at 03:26 PM
+-- Generation Time: Mar 13, 2025 at 06:28 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admin` (
   `id_admin` int(11) NOT NULL,
-  `nama` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL,
   `username` varchar(15) NOT NULL,
   `password` varchar(32) NOT NULL,
   `last_login` datetime NOT NULL
@@ -39,90 +39,90 @@ CREATE TABLE `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id_admin`, `nama`, `username`, `password`, `last_login`) VALUES
-(1, 'Pyanz Jheo Quiros', 'pjquiros', '8cc5ac7b84f8dd6476f85691d7c24137', '2025-03-04 20:49:18');
+INSERT INTO `admin` (`id_admin`, `name`, `username`, `password`, `last_login`) VALUES
+(1, 'Pyanz Jheo Quiros1', 'pjquiros', '8cc5ac7b84f8dd6476f85691d7c24137', '2025-03-13 23:41:09');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ikut_kandidat`
+-- Table structure for table `candidates`
 --
 
-CREATE TABLE `ikut_kandidat` (
-  `id_ikut_kandidat` int(11) NOT NULL,
+CREATE TABLE `candidates` (
+  `id_candidate` int(11) NOT NULL,
+  `candidate_name` varchar(50) NOT NULL DEFAULT '0',
+  `description` text DEFAULT NULL,
+  `photo` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `candidates`
+--
+
+INSERT INTO `candidates` (`id_candidate`, `candidate_name`, `description`, `photo`) VALUES
+(1, 'Pyanz Jheo Quiros', 'Pahuway nakaha ta ster', 'default.jpg'),
+(3, 'Amber Velasco', 'Pahuway nakaha ta ster', 'Edited_default.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `candidate_participation`
+--
+
+CREATE TABLE `candidate_participation` (
+  `id_candidate_participation` int(11) NOT NULL,
   `id_voting` int(11) DEFAULT NULL,
-  `id_kandidat` int(11) DEFAULT NULL,
-  `poin` int(11) NOT NULL DEFAULT 0
+  `id_candidate` int(11) DEFAULT NULL,
+  `points` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `ikut_kandidat`
+-- Dumping data for table `candidate_participation`
 --
 
-INSERT INTO `ikut_kandidat` (`id_ikut_kandidat`, `id_voting`, `id_kandidat`, `poin`) VALUES
-(6, 3, 4, 1),
-(7, 3, 5, 0);
+INSERT INTO `candidate_participation` (`id_candidate_participation`, `id_voting`, `id_candidate`, `points`) VALUES
+(3, 2, 1, 0),
+(4, 2, 3, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ikut_voting`
+-- Table structure for table `voters`
 --
 
-CREATE TABLE `ikut_voting` (
-  `id_ikut` int(11) NOT NULL,
-  `id_voting` int(11) DEFAULT NULL,
-  `id_pemilih` int(11) DEFAULT NULL,
-  `waktu` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `ikut_voting`
---
-
-INSERT INTO `ikut_voting` (`id_ikut`, `id_voting`, `id_pemilih`, `waktu`) VALUES
-(12, 3, 1, '2025-03-04 21:24:18');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `kandidat`
---
-
-CREATE TABLE `kandidat` (
-  `id_kandidat` int(11) NOT NULL,
-  `nama_kandidat` varchar(50) NOT NULL DEFAULT '0',
-  `keterangan` text DEFAULT NULL,
-  `foto` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `kandidat`
---
-
-INSERT INTO `kandidat` (`id_kandidat`, `nama_kandidat`, `keterangan`, `foto`) VALUES
-(4, 'Pyanz Jheo Quiros', 'Pahuway nakaha ta ster', '404257616_2357407224467777_51153778142694640_n.jpg'),
-(5, 'Amber Velasco', 'Bati daw og batasan pung sa iyang skewlmate', '475789626_9122155281165689_300543825066878549_n1.j');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pemilih`
---
-
-CREATE TABLE `pemilih` (
-  `id_pemilih` int(11) NOT NULL,
-  `nama` varchar(50) DEFAULT '0',
+CREATE TABLE `voters` (
+  `id_voter` int(11) NOT NULL,
+  `name` varchar(50) DEFAULT '0',
   `username` varchar(15) DEFAULT '0',
   `password` varchar(32) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `pemilih`
+-- Dumping data for table `voters`
 --
 
-INSERT INTO `pemilih` (`id_pemilih`, `nama`, `username`, `password`) VALUES
-(1, 'Amber Velasco', 'amberbatigbatas', 'c0855d87d697a50e95d92b6018170e60');
+INSERT INTO `voters` (`id_voter`, `name`, `username`, `password`) VALUES
+(3, 'Pyanz Jheo Quiros', 'liam', '534173c048199e1e8bd23671ea3bf4fb');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `voter_participation`
+--
+
+CREATE TABLE `voter_participation` (
+  `id_participation` int(11) NOT NULL,
+  `id_voting` int(11) DEFAULT NULL,
+  `id_voter` int(11) DEFAULT NULL,
+  `timestamp` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `voter_participation`
+--
+
+INSERT INTO `voter_participation` (`id_participation`, `id_voting`, `id_voter`, `timestamp`) VALUES
+(2, 2, 3, '2025-03-14 00:23:31');
 
 -- --------------------------------------------------------
 
@@ -132,23 +132,23 @@ INSERT INTO `pemilih` (`id_pemilih`, `nama`, `username`, `password`) VALUES
 
 CREATE TABLE `voting` (
   `id_voting` int(11) NOT NULL,
-  `nama_voting` varchar(250) NOT NULL
+  `voting_name` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `voting`
 --
 
-INSERT INTO `voting` (`id_voting`, `nama_voting`) VALUES
-(3, 'Voting para barangay sk');
+INSERT INTO `voting` (`id_voting`, `voting_name`) VALUES
+(2, 'Voting para barangay sk');
 
 --
 -- Triggers `voting`
 --
 DELIMITER $$
 CREATE TRIGGER `delete_voting` BEFORE DELETE ON `voting` FOR EACH ROW BEGIN
-	DELETE FROM ikut_kandidat WHERE ikut_kandidat.id_voting=OLD.id_voting;
-	DELETE FROM ikut_voting WHERE ikut_voting.id_voting=OLD.id_voting;
+	DELETE FROM candidate_participation WHERE candidate_participation.id_voting=OLD.id_voting;
+	DELETE FROM voter_participation WHERE voter_participation.id_voting=OLD.id_voting;
 END
 $$
 DELIMITER ;
@@ -164,28 +164,28 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_admin`);
 
 --
--- Indexes for table `ikut_kandidat`
+-- Indexes for table `candidates`
 --
-ALTER TABLE `ikut_kandidat`
-  ADD PRIMARY KEY (`id_ikut_kandidat`);
+ALTER TABLE `candidates`
+  ADD PRIMARY KEY (`id_candidate`);
 
 --
--- Indexes for table `ikut_voting`
+-- Indexes for table `candidate_participation`
 --
-ALTER TABLE `ikut_voting`
-  ADD PRIMARY KEY (`id_ikut`);
+ALTER TABLE `candidate_participation`
+  ADD PRIMARY KEY (`id_candidate_participation`);
 
 --
--- Indexes for table `kandidat`
+-- Indexes for table `voters`
 --
-ALTER TABLE `kandidat`
-  ADD PRIMARY KEY (`id_kandidat`);
+ALTER TABLE `voters`
+  ADD PRIMARY KEY (`id_voter`);
 
 --
--- Indexes for table `pemilih`
+-- Indexes for table `voter_participation`
 --
-ALTER TABLE `pemilih`
-  ADD PRIMARY KEY (`id_pemilih`);
+ALTER TABLE `voter_participation`
+  ADD PRIMARY KEY (`id_participation`);
 
 --
 -- Indexes for table `voting`
@@ -201,37 +201,37 @@ ALTER TABLE `voting`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `ikut_kandidat`
+-- AUTO_INCREMENT for table `candidates`
 --
-ALTER TABLE `ikut_kandidat`
-  MODIFY `id_ikut_kandidat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+ALTER TABLE `candidates`
+  MODIFY `id_candidate` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `ikut_voting`
+-- AUTO_INCREMENT for table `candidate_participation`
 --
-ALTER TABLE `ikut_voting`
-  MODIFY `id_ikut` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+ALTER TABLE `candidate_participation`
+  MODIFY `id_candidate_participation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `kandidat`
+-- AUTO_INCREMENT for table `voters`
 --
-ALTER TABLE `kandidat`
-  MODIFY `id_kandidat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `voters`
+  MODIFY `id_voter` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `pemilih`
+-- AUTO_INCREMENT for table `voter_participation`
 --
-ALTER TABLE `pemilih`
-  MODIFY `id_pemilih` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+ALTER TABLE `voter_participation`
+  MODIFY `id_participation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `voting`
 --
 ALTER TABLE `voting`
-  MODIFY `id_voting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_voting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

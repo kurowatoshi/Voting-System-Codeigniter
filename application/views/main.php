@@ -1,4 +1,4 @@
-    <?php if ($pilih < 1): ?>
+<?php if ($pilih < 1): ?>
       <?php if ($passdefault): ?>
         <div class="col-sm-12">
           <div class="tengah">
@@ -27,38 +27,39 @@
         </div>
       <?php else: ?>
         <div class="col-sm-12">
-          <div class="box ">
+          <div class="box" style="background-color: transparent !important; border: none !important;">
             <div class="box-body">
-              <h1 class="text-center no-margin"><?=$voting->nama_voting?></h1>
+              <div style="margin-top: 20px !important; margin-bottom: -20px !important; font-weight: 600;">
+                <h1 class="text-center no-margin"><?=$voting->voting_name?></h1> <!-- Changed 'nama_voting' to 'voting_name' -->
+                <h4 class="text-muted text-center">*Please choose a candidate to continue</h4>
+              </div>
               <hr>
               <div class="tengah">
                 <?php foreach ($kandidat as $k): ?>
                 <div class="col-sm-4">
-                  <div class="box">
+                  <div class="box" style="border: none !important;">
                     <div class="box-body box-profile">
-                      <img src="<?=base_url('assets/img/kandidat/'.$k->foto);?>" alt="" class="profile-user-img img-kandidat img-responsive img-circle">
-                      <h3 class="profile-username text-center"><?=$k->nama_kandidat?></h3>
-                      <p class="text-center text-muted"><?=$k->keterangan?></p>
-                      <button class="btn btn-danger btn-flat btn-block pilih" data="<?=$k->id_kandidat?>" data-voting="<?=$voting->id_voting?>" data-nama="<?=$k->nama_kandidat?>">Vote</button>
+                      <img src="<?=base_url('assets/img/kandidat/'.$k->photo);?>" alt="" class="profile-user-img img-kandidat img-responsive img-circle"> <!-- Changed 'foto' to 'photo' -->
+                      <h3 class="profile-username text-center"><?=$k->candidate_name?></h3> <!-- Changed 'nama_kandidat' to 'candidate_name' -->
+                      <p class="text-center text-muted"><?=$k->description?></p> <!-- Changed 'keterangan' to 'description' -->
+                      <button class="btn btn-danger btn-flat btn-block pilih" data="<?=$k->id_candidate?>" data-voting="<?=$voting->id_voting?>" data-nama="<?=$k->candidate_name?>">Vote</button> <!-- Changed 'id_kandidat' to 'id_candidate' and 'nama_kandidat' to 'candidate_name' -->
                     </div>
                   </div>
                 </div>
                 <?php endforeach ?>
               </div>
-              <h4 class="text-muted text-center">*Please choose a candidate to continue</h4>
             </div>
           </div>
         </div>
       <?php endif ?>
     <?php else: ?>
         <div class="col-sm-12">
-          <div class="box box-solid">
+          <div class="box box-solid vh-100">
             <div class="box-body">
               <h2 class="text-center">Thank You For Your Participation!</h2>
               <h4 class="text-center">We hope to see you again.</h4>
-              <hr>
               <div class="tengah">
-                <button class="btn btn-danger btn-flat logout text-center">LOGOUT NOW</button>
+                <button class="btn btn-danger btn-flat logout text-center" style="">LOGOUT NOW</button>
               </div>
             </div>
           </div>
